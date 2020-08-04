@@ -1,0 +1,28 @@
+{
+  "name": "DAZN-coding-challenge",
+  "version": "1.0.0",
+  "description": "Build a service in Node.js that exposes an API which can be consumed from any client. This service must check how many video streams a given user is watching and prevent a user watching more than 3 video streams concurrently.",
+  "main": "logStream.js",
+  "dependencies": {
+    "aws-sdk": "^2.726.0",
+    "jest": "^26.2.2",
+    "uuid": "^8.3.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackralph/DAZN-coding-challenge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jackralph/DAZN-coding-challenge/issues"
+  },
+  "homepage": "https://github.com/jackralph/DAZN-coding-challenge#readme",
+  "devDependencies": {
+    "supertest": "^4.0.2"
+  }
+}
