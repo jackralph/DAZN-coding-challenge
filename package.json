@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/jackralph/DAZN-coding-challenge#readme",
   "devDependencies": {
+    "serverless-dynamodb-local": "^0.2.39",
+    "serverless-offline": "^6.5.0",
     "supertest": "^4.0.2"
   }
 }
