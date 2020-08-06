@@ -12,14 +12,22 @@ const config = {
 
 const ddb = new DocumentClient(config);
 
+// afterAll(() => {
+//   ddb.deleteTable({ TableName: "userStreamsTestTable" });
+// });
+// trying to delete table to escape "ResourceInUseException: Cannot create preexisting table" error
+
 describe("dynamodb local tests", () => {
   it("should insert item into table", async () => {
     await ddb
-      .put({ TableName: "userStreams", Item: { streamId: "1", userId: "1" } })
+      .put({
+        TableName: "userStreamsTestTable",
+        Item: { streamId: "1", userId: "1" },
+      })
       .promise();
 
     const { Item } = await ddb
-      .get({ TableName: "userStreams", Key: { streamId: "1" } })
+      .get({ TableName: "userStreamsTestTable", Key: { streamId: "1" } })
       .promise();
 
     expect(Item).toEqual({
@@ -29,16 +37,22 @@ describe("dynamodb local tests", () => {
   });
   it("should scan for stream log by id", async () => {
     await ddb
-      .put({ TableName: "userStreams", Item: { streamId: "1", userId: "1" } })
+      .put({
+        TableName: "userStreamsTestTable",
+        Item: { streamId: "1", userId: "1" },
+      })
       .promise();
 
     await ddb
-      .put({ TableName: "userStreams", Item: { streamId: "2", userId: "2" } })
+      .put({
+        TableName: "userStreamsTestTable",
+        Item: { streamId: "2", userId: "2" },
+      })
       .promise();
 
     const { Items } = await ddb
       .scan({
-        TableName: "userStreams",
+        TableName: "userStreamsTestTable",
         ProjectionExpression: "#uid",
         FilterExpression: "#uid = :uid",
         ExpressionAttributeNames: {
@@ -54,18 +68,27 @@ describe("dynamodb local tests", () => {
   });
   it("should find multiple user stream logs", async () => {
     await ddb
-      .put({ TableName: "userStreams", Item: { streamId: "1", userId: "3" } })
+      .put({
+        TableName: "userStreamsTestTable",
+        Item: { streamId: "1", userId: "3" },
+      })
       .promise();
     await ddb
-      .put({ TableName: "userStreams", Item: { streamId: "2", userId: "3" } })
+      .put({
+        TableName: "userStreamsTestTable",
+        Item: { streamId: "2", userId: "3" },
+      })
       .promise();
     await ddb
-      .put({ TableName: "userStreams", Item: { streamId: "3", userId: "3" } })
+      .put({
+        TableName: "userStreamsTestTable",
+        Item: { streamId: "3", userId: "3" },
+      })
       .promise();
 
     const { Items } = await ddb
       .scan({
-        TableName: "userStreams",
+        TableName: "userStreamsTestTable",
         ProjectionExpression: "#uid",
         FilterExpression: "#uid = :uid",
         ExpressionAttributeNames: {
@@ -81,11 +104,14 @@ describe("dynamodb local tests", () => {
   });
   it("removes a log stream", async () => {
     await ddb
-      .put({ TableName: "userStreams", Item: { streamId: "1", userId: "4" } })
+      .put({
+        TableName: "userStreamsTestTable",
+        Item: { streamId: "1", userId: "4" },
+      })
       .promise();
 
     await ddb.delete({
-      TableName: "userStreams",
+      TableName: "userStreamsTestTable",
       Key: {
         streamId: "2",
       },
@@ -100,7 +126,7 @@ describe("dynamodb local tests", () => {
 
     const { Items } = await ddb
       .scan({
-        TableName: "userStreams",
+        TableName: "userStreamsTestTable",
         ProjectionExpression: "#uid",
         FilterExpression: "#uid = :uid",
         ExpressionAttributeNames: {
