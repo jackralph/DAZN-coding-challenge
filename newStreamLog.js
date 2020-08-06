@@ -45,24 +45,30 @@ module.exports.logStream = (event, context, callback) => {
     userId: requestBody.userId,
   };
 
-  return db.scan(params, (error, data) => {
-    if (data.Items.length < 3) {
-      db.put({
-        TableName: userStreams,
-        Item: stream,
-      })
-        .promise()
-        .then(() => {
-          callback(null, response(201, stream));
+  if (!stream.userId) {
+    callback(null, response(400, { message: "Request missing userId" }));
+  } else {
+    return db.scan(params, (error, data) => {
+      if (data.Items.length < 3) {
+        db.put({
+          TableName: userStreams,
+          Item: stream,
         })
-        .catch((error) => {
-          callback(null, response(error.statusCode, error));
-        });
-    } else {
-      callback(
-        null,
-        response(403, "Unable to start a new stream, maximum limit reached")
-      );
-    }
-  });
+          .promise()
+          .then(() => {
+            callback(null, response(201, stream));
+          })
+          .catch((error) => {
+            callback(null, response(error.statusCode, { message: error }));
+          });
+      } else {
+        callback(
+          null,
+          response(403, {
+            message: "Unable to start a new stream, maximum limit reached",
+          })
+        );
+      }
+    });
+  }
 };
