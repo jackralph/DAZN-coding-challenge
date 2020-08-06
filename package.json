@@ -5,7 +5,12 @@
   "main": "logStream.js",
   "dependencies": {
     "aws-sdk": "^2.726.0",
+    "axios": "^0.19.2",
+    "serverless-dynamodb-local": "^0.2.39",
     "uuid": "^8.3.0"
+  },
+  "scripts": {
+    "test": "jest dynamo.test.js"
   },
   "repository": {
     "type": "git",
@@ -19,8 +24,8 @@
   },
   "homepage": "https://github.com/jackralph/DAZN-coding-challenge#readme",
   "devDependencies": {
-    "serverless-dynamodb-local": "^0.2.39",
-    "serverless-offline": "^6.5.0",
-    "supertest": "^4.0.2"
+    "@shelf/jest-dynamodb": "^1.7.0",
+    "jest": "^26.2.2",
+    "serverless-offline": "^6.5.0"
   }
 }
