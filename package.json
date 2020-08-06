@@ -9,7 +9,7 @@
     "uuid": "^8.3.0"
   },
   "scripts": {
-    "test": "jest newStreamLog.test.js"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
