@@ -4,9 +4,12 @@
   "description": "Build a service in Node.js that exposes an API which can be consumed from any client. This service must check how many video streams a given user is watching and prevent a user watching more than 3 video streams concurrently.",
   "main": "logStream.js",
   "dependencies": {
+    "@shelf/jest-dynamodb": "^1.7.0",
     "aws-sdk": "^2.726.0",
     "axios": "^0.19.2",
+    "jest": "^26.2.2",
     "serverless-dynamodb-local": "^0.2.39",
+    "serverless-offline": "^6.5.0",
     "uuid": "^8.3.0"
   },
   "scripts": {
@@ -23,9 +26,5 @@
     "url": "https://github.com/jackralph/DAZN-coding-challenge/issues"
   },
   "homepage": "https://github.com/jackralph/DAZN-coding-challenge#readme",
-  "devDependencies": {
-    "@shelf/jest-dynamodb": "^1.7.0",
-    "jest": "^26.2.2",
-    "serverless-offline": "^6.5.0"
-  }
+  "devDependencies": {}
 }
