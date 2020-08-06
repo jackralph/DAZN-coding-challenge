@@ -46,7 +46,7 @@ module.exports.logStream = (event, context, callback) => {
   };
 
   if (!stream.userId) {
-    callback(null, response(400, { message: "Request missing userId" }));
+    callback(null, response(400, { error: "Request missing userId" }));
   } else {
     return db.scan(params, (error, data) => {
       if (data.Items.length < 3) {
@@ -64,8 +64,8 @@ module.exports.logStream = (event, context, callback) => {
       } else {
         callback(
           null,
-          response(403, {
-            message: "Unable to start a new stream, maximum limit reached",
+          response(400, {
+            error: "Unable to start a new stream, maximum limit reached",
           })
         );
       }
