@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 describe("logStream()", () => {
-  it("logs a new stream to the stream log", async () => {
+  xit("logs a new stream to the stream log", async () => {
     const post = () => {
       return axios.post(
         "https://vra4plkr9e.execute-api.eu-west-2.amazonaws.com/dev/stream",
