@@ -4,7 +4,7 @@ Build a service in Node.js that exposes an API which can be consumed from any cl
 
 ### URL
 
-The api can be accessed at https://vra4plkr9e.execute-api.eu-west-2.amazonaws.com/dev/stream.
+The api can be accessed at https://vra4plkr9e.execute-api.eu-west-2.amazonaws.com/dev/stream
 
 ### Planning
 
