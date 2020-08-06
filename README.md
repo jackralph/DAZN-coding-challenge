@@ -78,3 +78,7 @@ The 3 test files included in the test folder are my experiments with testing and
 - Commits
 
 I feel my commits could have been more frequent. However I took a plunge into AWS and wasn't entirely sure where ideal milestones could be identified so there were times where I had the whole function written before committing. In the future I am more wise to where commit points could be and how I could more efficiently manage my code.
+
+- Infrastructure as code
+
+I've found this to be a really productive way of working. Not only is it nice to have the home-comforts of Visual Studio, but the whole process feels a-lot more fluid and efficient than using the AWS Console. This was my first time working in this fashion and I feel much more confident in working with IaC and the experience has been very rewarding.
