@@ -10,14 +10,16 @@ const config = {
   }),
 };
 
-const ddb = new DocumentClient(config);
-
-// afterAll(() => {
-//   ddb.deleteTable({ TableName: "userStreamsTestTable" });
-// });
-// trying to delete table to escape "ResourceInUseException: Cannot create preexisting table" error
+/* afterAll(() => {
+ddb.deleteTable({ TableName: "userStreamsTestTable" });
+});
+trying to delete table to escape "ResourceInUseException: Cannot create preexisting table" error
+this isn't needed usually however if there's an error with the destroying of the serverless offline connection
+then the tests error out due to the table name already being used. */
 
 describe("dynamodb local tests", () => {
+  const ddb = new DocumentClient(config);
+
   it("should insert item into table", async () => {
     await ddb
       .put({

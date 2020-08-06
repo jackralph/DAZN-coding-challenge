@@ -71,7 +71,9 @@ Lambda can scale up via parallel executions, however I'm unsure on the exact num
 - Testing
 
 Testing proved to be difficult when when working with AWS and serverless and with more experience I will become more efficient at testing when working this way.
-Throughout the challenge I implemented testing through the use of Postman and CloudWatch where applicable. In addition to this I used jest while mocking a dynamodb table to ensure that the data that was being inserted/removed was in the correct format and the responses received were valid. Using Postman was incredibly useful as I could ensure the endpoints were functioning and could provide a detailed rundown of the status codes and response bodies. I am happy I chose to broaden my horizons and try implement AWS and serverless for the experience alone - I feel this experience will serve me greatly in the future.
+Throughout the challenge I implemented testing through the use of Postman, TDD and CloudWatch where applicable. In addition to this I used jest while mocking a dynamodb table to ensure that the data that was being inserted/removed was in the correct format and the responses received were valid. Using Postman was incredibly useful as I could ensure the endpoints were functioning and could provide a detailed rundown of the status codes and response bodies. I am happy I chose to broaden my horizons and try implement AWS and serverless for the experience alone - I feel this experience will serve me greatly in the future.
+
+The 3 test files included in the test folder are my experiments with testing and dynamo.test.js threw up the best results as it enabled to ensure the data was getting sent and received in the correct format, ensuring that the components of the functions were working correctly.
 
 - Commits
 
