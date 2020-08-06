@@ -8,7 +8,7 @@ The api can be accessed at https://vra4plkr9e.execute-api.eu-west-2.amazonaws.co
 
 ### Planning
 
-My approach to this problem was one of simplicity but with scalability in mind. I knew I could have developed a backend server with Axios and crafted out the functionality to enable the consumer to check how many streams the user is watching and prohibit them to watch more than 3 at a time. However I felt that I needed to implement AWS to take advantage of the scalability of Lambda, API Gateway and DynamoDB.
+My approach to this problem was one of simplicity but with scalability in mind. I knew I could have developed a backend server and crafted out the functionality to enable the consumer to check how many streams the user is watching and prohibit them to watch more than 3 at a time. However I felt that I needed to implement AWS to take advantage of the scalability of Lambda, API Gateway and DynamoDB.
 
 My knowledge of AWS has grown recently however my knowledge of configuring AWS Services via code is still somewhat limited so I wanted to test myself to try and learn a different approach.
 
@@ -18,14 +18,14 @@ I envisioned using two methods, POST and DELETE to manage stream logs once they'
 
 - clone the repository into your chosen location.
 - install the dependencies `npm install`.
-- initialize the offline server `sls offline start --location .`.
+- initialize the offline server `sls offline start --location .` (if you wish to test locally).
 - utilise Postman or a similar service to send requests to the API.
 
 ### Valid requests
 
 - POST
 
-To log a stream in offline mode, send a POST request to http://localhost:3000/dev/stream, an example request body is as follows:
+To log a stream in offline mode, send a POST request to http://localhost:3000/dev/stream (the live database can also be used to test the deployed version), an example request body is as follows:
 
 ```bash
 {
@@ -37,7 +37,7 @@ In a real world scenario, the streamId could be sent with the userId, however in
 
 - DELETE
 
-To remove a stream log in offline mode, send a DELETE request to http://localhost:3000/dev/stream, an example request body is as follows:
+To remove a stream log in offline mode, send a DELETE request to http://localhost:3000/dev/stream (the live database can also be used to test the deployed version), an example request body is as follows:
 
 ```bash
 {
@@ -66,10 +66,13 @@ To my knowledge, even though these servers are not managed manually, they offer 
 
 Lambda can scale up via parallel executions, however I'm unsure on the exact number of executions per second on each region. Nevertheless I'm aware it's pretty powerful at dealing with a heavy amount of executions. I feel with experience my Lambda functions can become more efficient and reduce the execution time - not applicable on small scale but on larger scales I can see it would be a huge difference.
 
-### Frequent Commits
+### What I've learn from this coding challenge
+
+- Testing
+
+Testing proved to be difficult when when working with AWS and serverless and with more experience I will become more efficient at testing when working this way.
+Throughout the challenge I implemented testing through the use of Postman and CloudWatch where applicable. In addition to this I used jest while mocking a dynamodb table to ensure that the data that was being inserted/removed was in the correct format and the responses received were valid. Using Postman was incredibly useful as I could ensure the endpoints were functioning and could provide a detailed rundown of the status codes and response bodies. I am happy I chose to broaden my horizons and try implement AWS and serverless for the experience alone - I feel this experience will serve me greatly in the future.
+
+- Commits
 
 I feel my commits could have been more frequent. However I took a plunge into AWS and wasn't entirely sure where ideal milestones could be identified so there were times where I had the whole function written before committing. In the future I am more wise to where commit points could be and how I could more efficiently manage my code.
-
-### Testing
-
-Throughout the challenge I implemented testing through the use of Postman and CloudWatch where applicable. However I really wanted to implement testing via test suites such as Jest which I am familiar with. I am positive this is possible, however I'm not familiar with using serverless testing with test suites - I will be putting in some time to learn this as I feel test suites give a more resolute response to functionality. I tried multiple methods to implement this, however I didn't manage to find a solution, YET.
